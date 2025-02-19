@@ -1,0 +1,51 @@
+import 'dart:convert';
+
+import 'package:frontend/constants/constants.dart';
+import 'package:frontend/models/user_model.dart';
+import 'package:http/http.dart' as http;
+
+class AuthRepository {
+  Future<UserModel> signUp({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final res = await http.post(
+        Uri.parse('${Constants.endPoint}/auth/signup'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'name': name,
+          'email': email,
+          'password': password,
+        }),
+      );
+
+      if (res.statusCode != 201) {
+        throw jsonDecode(res.body)['error'];
+      }
+
+      return UserModel.fromJson(res.body);
+    } catch (e) {
+      print(e);
+      throw e.toString();
+    }
+  }
+
+  Future<void> login() async {
+    try {
+      print('called object');
+      final res = await http.get(
+        Uri.parse('${Constants.endPoint}/'),
+      );
+
+      var decode = jsonDecode(res.body);
+
+      print(decode);
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+}

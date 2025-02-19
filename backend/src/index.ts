@@ -1,0 +1,17 @@
+import express from "express";
+import authRouter from "./routes/auth";
+
+const app = express();
+
+app.use(express.json());
+
+app.use('/auth', authRouter);
+
+app.get("/" , (req,res) => {
+    res.send("welcome to the world ad ");
+});
+
+app.listen(8000, "0.0.0.0" , () => { 
+        console.log('Server started at port 8000');
+    }
+);
