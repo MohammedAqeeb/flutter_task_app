@@ -13,5 +13,4 @@ app.get("/" , (req,res) => {
 
 app.listen(8000, "0.0.0.0" , () => { 
         console.log('Server started at port 8000');
-    }
-);
+    });

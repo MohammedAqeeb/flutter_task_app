@@ -5,7 +5,7 @@ import { eq } from 'drizzle-orm';
 import bcryptjs from "bcryptjs";
 import jwt  from 'jsonwebtoken';
 import { auth, AuthRequest } from '../middleware/auth';
-import { error } from 'console';
+
 
 
 const authRouter = Router();
@@ -34,7 +34,7 @@ authRouter.post("/signup",
 
         // check if the email id already existing in the dataBase
         if(checkUserExist.length){
-            res.status(400).json({msg: 'User with email id Already Exists'});
+            res.status(400).json({error: 'User with email id Already Exists'});
             return;
         }
         const hashedPassword = await bcryptjs.hash(password,8);
@@ -66,14 +66,14 @@ authRouter.post("/login",
 
         // check if the email id already existing in the dataBase
         if(!checkUserExist){
-            res.status(400).json({msg: `User with email id Does'/t Exists`});
+            res.status(400).json({error: `User with email id Does'/t Exists`});
             return;
         }
 
         // Checking for valid password of existing user
         const validPassword = await bcryptjs.compare(password, checkUserExist.password);
         if(!validPassword){
-            res.status(400).json({msg:"Incorrect Password"});
+            res.status(400).json({error:"Incorrect Password"});
             return;
         }
 
@@ -134,7 +134,7 @@ authRouter.get('/', auth, async (req: AuthRequest,res) =>
 {
     try{
         if(!req.user){
-            res.status(401).json({msg: "User not found"});
+            res.status(401).json({error: "User not found"});
             return;
         }
 
