@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/features/auth/cubit/auth_cubit.dart';
 import 'package:frontend/features/auth/pages/sign_in_page.dart';
 
+import 'features/blog/cubit/task_cubit.dart';
 import 'features/blog/pages/home_page.dart';
 
 void main() {
@@ -10,6 +11,7 @@ void main() {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => TasksCubit()),
       ],
       child: const MyApp(),
     ),
@@ -65,6 +67,14 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
           contentPadding: const EdgeInsets.all(20),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black,
+              minimumSize: const Size(double.infinity, 60),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              )),
         ),
         useMaterial3: true,
       ),

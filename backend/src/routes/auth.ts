@@ -124,10 +124,6 @@ authRouter.post('/isTokenValid', async(req,res) => {
     }catch(e){
         res.status(500).json(false)
     }
-
-
-
-
 });
 
 authRouter.get('/', auth, async (req: AuthRequest,res) => 

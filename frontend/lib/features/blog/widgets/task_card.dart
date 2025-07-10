@@ -14,9 +14,16 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      decoration:
-          BoxDecoration(color: colors, borderRadius: BorderRadius.circular(16)),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 12,
+      ),
+      decoration: BoxDecoration(
+        color: colors,
+        borderRadius: BorderRadius.circular(
+          16,
+        ),
+      ),
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
